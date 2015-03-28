@@ -1,0 +1,60 @@
+diff --git a/Epsilon.cct b/Epsilon.cct
+index 9fcb427..cf527d5 100644
+--- a/Epsilon.cct
++++ b/Epsilon.cct
+@@ -8,7 +8,7 @@ bool eps_is_equal_to(const T & a, const T & b, const T & ref) {
+ fuzz for multiple operations. */
+ 
+ 	bool val = fabs(a - b) <=
+-		max(ref, static_cast<T>(std::max(fabs(a), fabs(b)))) *
++		std::max(ref, static_cast<T>(std::max(fabs(a), fabs(b)))) *
+ 		std::numeric_limits<T>::epsilon() * 512;
+ #if 0
+ 	if (! val) {
+diff --git a/Graph.h b/Graph.h
+index b6b41ab..469961e 100644
+--- a/Graph.h
++++ b/Graph.h
+@@ -14,6 +14,7 @@
+ #endif
+ 
+ #include <iosfwd>
++#include <cstddef>
+ 
+ namespace rstd {
+ /*###########################################################################*/
+@@ -137,7 +138,7 @@ private:
+ 
+ public:
+ // Typedefs
+-	typedef ptrdiff_t difference_type;
++	typedef std::ptrdiff_t difference_type;
+ 
+ 	typedef v_impl::iterator vertex_iterator;
+ 	typedef e_impl::iterator edge_iterator;
+diff --git a/RMath.cct b/RMath.cct
+index 66c9be4..3035e4f 100644
+--- a/RMath.cct
++++ b/RMath.cct
+@@ -73,7 +73,7 @@ float interval_round(float a, P period) {
+ /*===========================================================================*/
+ template<typename D>
+ D clip(const D & x, D low, D high) {
+-	return min(max(x, low), high);
++	return std::min(std::max(x, low), high);
+ }
+ 
+ /*===========================================================================*/
+diff --git a/RStd.h b/RStd.h
+index c5636f0..d598d2c 100644
+--- a/RStd.h
++++ b/RStd.h
+@@ -92,7 +92,7 @@ inline void rconfirm(bool x, const char * message) { if (! x) rexit(message); }
+ #define Rdumphex(x) (rstd::cerrhex << #x << ": 0x" << (x) << std::endl)
+ 
+ template <bool> struct static_assert;
+-template<> struct static_assert<true> { static_assert() {} };
++template<> struct static_assert<true> { static_assert<true>() {} };
+ // No false definition.  Compile-time failure if assertion fails.
+ #define STATIC_ASSERT(x) rstd::static_assert<(x)>()
+ 
