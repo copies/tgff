@@ -10,6 +10,11 @@ compilers. Patching is required as shown below.
 
 ```shell
 curl https://raw.githubusercontent.com/copies/tgff/patch/v3.5.patch | git apply
+```
+
+Now `make` should be able to succeed.
+
+```shell
 make
 ```
 
