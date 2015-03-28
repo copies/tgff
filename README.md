@@ -6,7 +6,7 @@ Hosting for [TGFF][1] (Task Graphs For Free). Refer to the original
 ## Compilation
 
 Running `make` directly fails as the code is not compatible with modern
-compilers. Patching is required.
+compilers. Patching is required as shown below.
 
 ```shell
 curl https://raw.githubusercontent.com/copies/tgff/patch/v3.5.patch | git apply
