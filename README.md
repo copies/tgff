@@ -9,7 +9,7 @@ The code is not compatible with modern compilers. Patching is required as shown
 below.
 
 ```shell
-curl https://raw.githubusercontent.com/copies/tgff/patch/v3.5.patch | git apply
+curl https://raw.githubusercontent.com/copies/tgff/patches/v3.5.patch | git apply
 ```
 
 [1]: http://ziyang.eecs.umich.edu/~dickrp/tgff
